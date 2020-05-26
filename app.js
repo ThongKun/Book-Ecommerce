@@ -6,6 +6,7 @@ const cookieParser = require('cookie-parser')
 require('dotenv').config();
 
 const authRoutes = require('./routes/auth')
+const userRoutes = require('./routes/user')
 const app = express()
 
 // SECTION DATABASE
@@ -28,8 +29,9 @@ db.once('open', () => {
 app.use(morgan('dev'))
 app.use(bodyParder.json())
 app.use(cookieParser())
-    // SECTION Routes middleware
+// SECTION Routes middleware
 app.use("/api", authRoutes)
+app.use("/api", userRoutes)
 
 
 const port = process.env.PORT || 8000
